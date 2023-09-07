@@ -5,6 +5,19 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+	"headers": [ {
+		"source": "**/*.unityweb",
+		"headers": [ {
+		  "key": "Content-Encoding",
+		  "value": "br"
+		} ]
+	  }, {
+		"source": "**/*.br",
+		"headers": [ {
+		  "key": "Content-Encoding",
+		  "value": "br"
+		} ]
+	  }]
   }
 }
