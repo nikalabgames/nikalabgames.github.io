@@ -5,7 +5,7 @@
       {
         "appID": "S848HYNJH5.com.nikalabgames.vrmovies3dvirtualreality",
         "paths": [
-          "*"
+          "/appstore_events/*"
         ]
       }
     ]
