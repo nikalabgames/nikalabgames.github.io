@@ -1,13 +1,27 @@
 {
-  "applinks": {
-    "apps": [],
-    "details": [
-      {
-        "appID": "S848HYNJH5.com.nikalabgames.vrmovies3dvirtualreality",
-        "paths": [
-          "/appstore_events/*"
-        ]
-      }
-    ]
-  }
+   "applinks": 
+   {
+     "details": 
+      [
+         {
+            "appIDs": [ "S848HYNJH5.com.nikalabgames.vrmovies3dvirtualreality" ],
+            "components": 
+            [
+               {
+                  "#": "no_universal_links",
+                  "exclude": true,
+                  "comment": "Matches any URL whose fragment equals no_universal_links and instructs the system not to open it as a universal link"
+               },
+               {
+                  "/": "/appstore_events/*",
+                  "comment": "Matches any URL whose path starts with /appstore_events/"
+               }
+            ]
+         }
+      ]
+   },
+   "webcredentials": 
+   {
+      "apps": [ "S848HYNJH5.com.nikalabgames.vrmovies3dvirtualreality" ]
+   }
 }
