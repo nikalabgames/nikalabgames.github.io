@@ -21,7 +21,7 @@
 							}
 						}
 
-						return "Application";
+						return sPageURL.length > 0 ? sPageURL : "Application";
 					}
 					document.getElementById("app_name").innerText = GetURLParameter("app_name");
 					
