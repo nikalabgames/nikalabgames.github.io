@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.13.1/brython.min.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.13.1/brython_stdlib.js">
+    </script>
+</head>
+
+<body>
+    <!-- import sys
+    mypath = "/Users/admin/MyProjects/Web/brython_yt_dlp/yt-dlp-2025.02.19"
+    sys.path.insert(0, mypath)       
+     from . import yt_dlp
+ -->
+    <script type="text/python">
+        import yt_dlp
+        import json
+        import yt_dlp
+
+        URL = 'https://www.youtube.com/watch?v=BaW_jenozKc'
+
+        # ℹ️ See help(yt_dlp.YoutubeDL) for a list of available options and public functions
+        ydl_opts = {}
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(URL, download=False)
+
+            # ℹ️ ydl.sanitize_info makes the info json-serializable
+            print(json.dumps(ydl.sanitize_info(info)))
+    </script>
+    <!-- <input id="zone"><button id="mybutton">click !</button> -->
+</body>
+
+</html>
