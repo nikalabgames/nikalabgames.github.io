@@ -53,6 +53,37 @@
                 background: #FF9A00;
             }
     </style>
+    <script>
+        function RequestGyroAndMotionPermission() {
+            console.log("DeviceMotionEvent.requestPermission");
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                DeviceMotionEvent.requestPermission()
+                    .then(permissionState => {
+                        if (permissionState === 'granted') {
+                            // Permission granted, you can now enable sensors in Unity
+                            console.log("Gyroscope access granted");
+                            // Optional: Send a message back to Unity if needed
+                            if (gameLoaded) {
+                                gameInstance.SendMessage('GyroHandler', 'OnPermissionGranted', 'granted');
+                            }
+                        } else {
+                            console.log("Gyroscope access denied");
+                            if (gameLoaded) {
+                                gameInstance.SendMessage('GyroHandler', 'OnPermissionGranted', 'denied');
+                            }
+                        }
+                    })
+                    .catch(console.error);
+            } else {
+                // Not an iOS 13+ device (e.g., Android or older iOS), permission not needed
+                console.log("DeviceMotionEvent.requestPermission not supported");
+                if (gameLoaded) {
+                    gameInstance.SendMessage('GyroHandler', 'OnPermissionGranted', 'notneeded');
+                }
+            }
+        }
+        RequestGyroAndMotionPermission();
+    </script>
 </head>
 <body>
     <canvas id="canvas" class="fullscreen"></canvas>
