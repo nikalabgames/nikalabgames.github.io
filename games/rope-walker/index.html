@@ -680,25 +680,34 @@
             }
     </script>
     <script>
-        screen.orientation.lock('landscape')
-          .then(() => console.log('Locked to landscape'))
-          .catch((error) => console.error(error));
         function requestSensorPermission() {
             if (typeof(DeviceMotionEvent) !== 'undefined' && typeof(DeviceMotionEvent.requestPermission) === 'function') {
-                DeviceMotionEvent.requestPermission().then(response => {
-                }).catch(console.error)
+                DeviceMotionEvent.requestPermission()
+                .then(response => {}).catch(console.error)
             }
         }
         function requestOrientationPermission() {
-            DeviceOrientationEvent.requestPermission()
-            .then(response => {}).catch(console.error)
+            if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
+                DeviceOrientationEvent.requestPermission()
+                .then(response => {
+                    if (response === 'granted') {
+                        // Теперь можно добавлять addEventListener
+                    }
+                }).catch(console.error)
+            }
         };
+        screen.orientation.addEventListener("change", () => {
+          console.log(`Новая ориентация: ${screen.orientation.type}`);
+          if (window.unityInstance !== null) {
+              window.unityInstance.SendMessage('VRCameraController', 'HandleJSOrientationChange', screen.orientation.type)
+          }
+        });
     </script>
     <script>
       function myFunction(data) {
           requestSensorPermission();
           requestOrientationPermission();
-          console.log("This message appears after 5 second.1");
+          console.log("Manual request sensor permission");
       }
     </script>
     <div class="container" style="position:relative;text-align:center;color:white;" >
