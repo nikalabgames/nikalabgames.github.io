@@ -164,14 +164,14 @@
                     }
 
                     let unityLoader = document.createElement('script')
-                    unityLoader.src = 'Build/RoadRash.loader.js'
+                    unityLoader.src = 'Build/road-rash.loader.js'
                     unityLoader.onload = () => {
                         createUnityInstance(
                             canvas,
                             {
-                                dataUrl: 'Build/RoadRash.data.unityweb',
-                                frameworkUrl: 'Build/RoadRash.framework.js.unityweb',
-                                codeUrl: 'Build/RoadRash.wasm.unityweb',
+                                dataUrl: 'Build/road-rash.data.unityweb',
+                                frameworkUrl: 'Build/road-rash.framework.js.unityweb',
+                                codeUrl: 'Build/road-rash.wasm.unityweb',
                                 streamingAssetsUrl: 'StreamingAssets',
                                 companyName: 'Nikalab Games',
                                 productName: 'Road Rash',
