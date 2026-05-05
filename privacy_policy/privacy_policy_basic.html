@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; color: #000; }
+        h2 { margin-top: 30px; color: #222; display: flex; align-items: center; }
+        
+        /* Автоматическая нумерация пунктов */
+        body { counter-reset: section; }
+        h2::before {
+            counter-increment: section;
+            content: counter(section) ". ";
+            margin-right: 10px;
+        }
+
+        .footer { margin-top: 50px; font-size: 0.9em; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
+        .hidden { display: none; }
+        #app-name { color: #007AFF; }
+    </style>
+</head>
+<body>
+
+    <h1>Privacy Policy for <span id="app-name">Application</span></h1>
+    
+    <p>This privacy policy applies to the <strong><span class="app-name-insert">Application</span></strong> for mobile devices. We are committed to protecting your privacy.</p>
+
+    <h2>Data Collection</h2>
+    <p>We believe in your right to privacy. The Application <strong>does not collect, store, or transmit any personal data</strong>. No account creation is required.</p>
+
+    <div id="section-sensors" class="hidden">
+        <h2>Sensors and Permissions</h2>
+        <p>The Application requests access to your device's <strong>Gyroscope and Accelerometer</strong>. This data is processed locally in real-time solely to provide the 360-degree VR experience. This data is never saved, uploaded, or shared.</p>
+    </div>
+
+    <div id="section-third-party-none">
+        <h2>Third-Party Services</h2>
+        <p>This Application does not use any third-party services (such as analytics or advertising networks) that collect information used to identify you.</p>
+    </div>
+
+    <div id="section-third-party-ads" class="hidden">
+        <h2>Third-Party Services</h2>
+        <p>The Application may use third-party services that collect information to improve user experience. These include:</p>
+        <ul>
+            <li><strong>Google Analytics for Firebase:</strong> To track app stability and performance.</li>
+            <li><strong>Google AdMob:</strong> To display relevant advertisements.</li>
+        </ul>
+        <p>These providers may collect data such as Cookies, Usage Data, and Advertising Identifiers (IDFA/IDG).</p>
+    </div>
+
+    <h2>Children's Privacy</h2>
+    <p>The Application is safe for users of all ages. We do not knowingly collect personally identifiable information from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update our Privacy Policy from time to time. Any changes will be posted on this page.</p>
+
+    <div class="footer">
+        <p>Contacts: <strong>info.nikalabgames@gmail.com</strong></p>
+        <p>Latest update: <span id="current-date"></span></p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 1. Установка имени приложения
+        const name = urlParams.get('app_name') || 'this Application';
+        document.getElementById('app-name').innerText = name;
+        const inserts = document.getElementsByClassName('app-name-insert');
+        for(let i=0; i<inserts.length; i++) { inserts[i].innerText = name; }
+
+        // 2. Логика Sensors (показываем только если sensors=true)
+        if (urlParams.get('sensors') === 'true') {
+            document.getElementById('section-sensors').classList.remove('hidden');
+        }
+
+        // 3. Логика Third-Party
+        if (urlParams.get('ads') === 'true') {
+            document.getElementById('section-third-party-none').classList.add('hidden');
+            document.getElementById('section-third-party-ads').classList.remove('hidden');
+        }
+
+        // 4. Текущая дата
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', options);
+    </script>
+
+</body>
+</html>
